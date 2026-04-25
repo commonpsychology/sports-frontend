@@ -3,7 +3,7 @@
  * Usage: <Navbar currentPage="home" onNavigate={setPage} />
  */
 import React, { useState } from "react";
-import { RED, DARK_BLUE, BLUE, DARK_RED, ORANGE, GOLD } from "../tokens.js";
+import {  DARK_BLUE, BLUE, DARK_RED, ORANGE, GOLD } from "../tokens.js";
 
 const navItems = [
   { label: "गृहपृष्ठ",    page: "home" },
