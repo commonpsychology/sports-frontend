@@ -1,5 +1,5 @@
 import React from "react";
-import { RED, DARK_BLUE, BLUE, DARK_RED, GOLD, MUTED } from "../tokens.js";
+import { DARK_BLUE, DARK_RED, GOLD } from "../tokens.js";
 
 const FOOTER_CSS = `
 .kn-footer{
@@ -46,6 +46,8 @@ const FOOTER_CSS = `
 .kn-logo-text-f .main{font-size:19px;font-weight:800;color:#fff;letter-spacing:.5px}
 .kn-logo-text-f .sub{font-size:9px;color:rgba(255,255,255,.55);letter-spacing:2px;text-transform:uppercase}
 .kn-footer-desc{font-size:13.5px;line-height:1.8;margin:14px 0 6px;color:rgba(255,255,255,.65)}
+.kn-fcol-sport-btn{display:block;color:rgba(255,255,255,.62);font-size:13.5px;margin-bottom:9px;transition:color .2s;background:transparent;border:none;cursor:pointer;padding:0;font-family:'Noto Sans Devanagari',sans-serif;text-align:left;}
+.kn-fcol-sport-btn:hover{color:${GOLD}}
 `;
 
 var FB_PATH = "M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.931-1.956 1.887v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z";
@@ -54,10 +56,10 @@ var IG_PATH = "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4
 var YT_PATH = "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z";
 
 var SOCIALS = [
-  { cls: "fb",    path: FB_PATH, size: 16, href: "https://facebook.com/khelaunnepal",   label: "Facebook"  },
-  { cls: "xtwit", path: X_PATH,  size: 15, href: "https://x.com/khelaunnepal",          label: "X"         },
-  { cls: "ig",    path: IG_PATH, size: 16, href: "https://instagram.com/khelaunnepal",  label: "Instagram" },
-  { cls: "yt",    path: YT_PATH, size: 17, href: "https://youtube.com/@khelaunnepal",   label: "YouTube"   },
+  { cls: "fb",    path: FB_PATH, size: 16, href: "https://facebook.com/khelaunnepal",  label: "Facebook"  },
+  { cls: "xtwit", path: X_PATH,  size: 15, href: "https://x.com/khelaunnepal",         label: "X"         },
+  { cls: "ig",    path: IG_PATH, size: 16, href: "https://instagram.com/khelaunnepal", label: "Instagram" },
+  { cls: "yt",    path: YT_PATH, size: 17, href: "https://youtube.com/@khelaunnepal",  label: "YouTube"   },
 ];
 
 function SocialLinks() {
@@ -67,19 +69,15 @@ function SocialLinks() {
       { width: s.size, height: s.size, viewBox: "0 0 24 24", fill: "currentColor" },
       React.createElement("path", { d: s.path })
     );
-    return React.createElement(
-      "a",
-      {
-        key: s.cls,
-        href: s.href,
-        target: "_blank",
-        rel: "noopener noreferrer",
-        className: "kn-soc-btn " + s.cls,
-        "aria-label": s.label,
-        title: s.label,
-      },
-      icon
-    );
+    return React.createElement("a", {
+      key: s.cls,
+      href: s.href,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "kn-soc-btn " + s.cls,
+      "aria-label": s.label,
+      title: s.label,
+    }, icon);
   });
   return React.createElement("div", { className: "kn-footer-socials" }, links);
 }
@@ -97,7 +95,12 @@ export default function Footer({ onNavigate }) {
   ];
 
   var sportLinks = ["फुटबल","क्रिकेट","बास्केटबल","ब्याडमिन्टन","पौडी","कुस्ती"];
-  var contactLinks = ["📍 काठमाडौं, नेपाल","📞 ०१-४४४४४४४","✉️ info@khelaunnepal.com","🕐 सोम–शुक्र: ९–५"];
+  var contactLinks = [
+    { label: "📍 काठमाडौं, नेपाल",       href: "https://maps.google.com/?q=Kathmandu,Nepal" },
+    { label: "📞 ०१-४४४४४४४",            href: "tel:+977-1-4444444" },
+    { label: "✉️ info@khelaunnepal.com", href: "mailto:info@khelaunnepal.com" },
+    { label: "🕐 सोम–शुक्र: ९–५",        href: null },
+  ];
 
   return (
     <React.Fragment>
@@ -131,14 +134,30 @@ export default function Footer({ onNavigate }) {
           <div className="kn-footer-col">
             <h4>खेलकुद</h4>
             {sportLinks.map(function(l, i) {
-              return <a key={i} href="#">{l}</a>;
+              return (
+                <button key={i} className="kn-fcol-sport-btn" onClick={function() { go("sports"); }}>
+                  {l}
+                </button>
+              );
             })}
           </div>
 
           <div className="kn-footer-col">
             <h4>सम्पर्क</h4>
-            {contactLinks.map(function(l, i) {
-              return <a key={i} href="#">{l}</a>;
+            {contactLinks.map(function(c, i) {
+              if (c.href) {
+                return React.createElement("a", {
+                  key: i,
+                  href: c.href,
+                  target: c.href.startsWith("http") ? "_blank" : undefined,
+                  rel: c.href.startsWith("http") ? "noopener noreferrer" : undefined,
+                }, c.label);
+              }
+              return (
+                <span key={i} style={{ display: "block", color: "rgba(255,255,255,.62)", fontSize: 13.5, marginBottom: 9 }}>
+                  {c.label}
+                </span>
+              );
             })}
           </div>
 
@@ -147,9 +166,9 @@ export default function Footer({ onNavigate }) {
         <div className="kn-footer-bottom">
           <p>© २०८१ खेलौँ नेपाल। सर्वाधिकार सुरक्षित।</p>
           <div className="kn-footer-bottom-links">
-            <a href="#">गोपनीयता नीति</a>
-            <a href="#">सेवा सर्तहरू</a>
-            <a href="#">साइटम्याप</a>
+            <button className="kn-fcol-link" onClick={function() { go("privacy"); }}>गोपनीयता नीति</button>
+            <button className="kn-fcol-link" onClick={function() { go("terms"); }}>सेवा सर्तहरू</button>
+            <button className="kn-fcol-link" onClick={function() { go("sitemap"); }}>साइटम्याप</button>
           </div>
         </div>
 
