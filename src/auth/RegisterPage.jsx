@@ -6,8 +6,6 @@
 import React, { useState } from "react";
 import AUTH_CSS from "./authStyles.js";
 import OTPModal from "./OTPModal.jsx";
-import { LOGO_SRC } from "../logoData.js";
-import { BLUE, DARK_BLUE, RED, GREEN, MUTED } from "../tokens.js";
 
 const USER_TYPES = [
   { id: "player",  icon: "⚽", label: "खेलाडी" },
@@ -76,7 +74,7 @@ export default function RegisterPage({ onNavigate }) {
     // ────────────────────────────────────────────────────────
     await new Promise(r => setTimeout(r, 1200));
     setLoading(false);
-    setShowOTP(true); // Show OTP modal
+    setShowOTP(true);
   };
 
   const pwd = passwordStrength(form.password);
@@ -96,7 +94,7 @@ export default function RegisterPage({ onNavigate }) {
         {/* LEFT */}
         <div className="auth-left">
           <div className="auth-left-logo">
-            <img src='/logo.png'  alt="Logo" />
+            <img src='/logo.png' alt="Logo" />
             <div className="auth-left-logo-text">
               <div className="main">खेलौँ नेपाल</div>
               <div className="sub">Khelaun NEPAL</div>
@@ -261,8 +259,23 @@ export default function RegisterPage({ onNavigate }) {
               <div className="auth-check">
                 <input type="checkbox" id="terms" checked={form.agreeTerms} onChange={set("agreeTerms")} />
                 <label htmlFor="terms">
-                  मैले <a href="#" onClick={e=>e.preventDefault()}>सेवा सर्तहरू</a> र{" "}
-                  <a href="#" onClick={e=>e.preventDefault()}>गोपनीयता नीति</a> पढेर सहमत छु।
+                  मैले{" "}
+                  <button
+                    type="button"
+                    className="auth-inline-link"
+                    onClick={() => onNavigate("terms")}
+                  >
+                    सेवा सर्तहरू
+                  </button>
+                  {" "}र{" "}
+                  <button
+                    type="button"
+                    className="auth-inline-link"
+                    onClick={() => onNavigate("privacy")}
+                  >
+                    गोपनीयता नीति
+                  </button>
+                  {" "}पढेर सहमत छु।
                 </label>
               </div>
               {errors.agreeTerms && <p className="auth-err" style={{ marginTop: -10, marginBottom: 10 }}>{errors.agreeTerms}</p>}

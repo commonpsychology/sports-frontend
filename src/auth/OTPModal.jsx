@@ -6,7 +6,6 @@
  *   onClose    — callback to close/dismiss
  */
 import React, { useState, useRef, useEffect } from "react";
-import { GREEN, BLUE } from "../tokens.js";
 
 const OTP_LENGTH = 6;
 

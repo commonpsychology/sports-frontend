@@ -3,7 +3,6 @@
  * Usage: <Navbar currentPage="home" onNavigate={setPage} />
  */
 import React, { useState } from "react";
-import { LOGO_SRC } from "../logoData.js";
 import { RED, DARK_BLUE, BLUE, DARK_RED, ORANGE, GOLD } from "../tokens.js";
 
 const navItems = [

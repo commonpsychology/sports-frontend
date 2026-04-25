@@ -4,8 +4,6 @@
  */
 import React, { useState } from "react";
 import AUTH_CSS from "./authStyles.js";
-import { LOGO_SRC } from "../logoData.js";
-import { BLUE, DARK_BLUE, RED } from "../tokens.js";
 
 const USER_TYPES = [
   { id: "player",  icon: "⚽", label: "खेलाडी" },

@@ -1,4 +1,4 @@
-import { RED, DARK_RED, BLUE, DARK_BLUE, ORANGE, GOLD, MUTED, LIGHT, GREEN } from "../tokens.js";
+import { RED, DARK_RED, BLUE, DARK_BLUE, ORANGE, GOLD, MUTED, GREEN } from "../tokens.js";
 
 const AUTH_CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800&display=swap');

@@ -8,8 +8,7 @@
  */
 import React, { useState, useRef, useEffect } from "react";
 import AUTH_CSS from "./authStyles.js";
-import { LOGO_SRC } from "../logoData.js";
-import { BLUE, DARK_BLUE, GREEN, RED, GOLD } from "../tokens.js";
+import { BLUE, DARK_BLUE} from "../tokens.js";
 
 const OTP_LENGTH = 6;
 
